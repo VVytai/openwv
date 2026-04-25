@@ -10,14 +10,7 @@ use crate::config::CONFIG;
 pub fn try_init_logging() -> bool {
     let mut builder: env_logger::Builder = env_logger::Builder::new();
 
-    builder.format(|buf, record| {
-        writeln!(
-            buf,
-            "[OpenWV {:<5}] {}",
-            record.level(),
-            record.args()
-        )
-    });
+    builder.format(|buf, record| writeln!(buf, "[OpenWV {:<5}] {}", record.level(), record.args()));
 
     let env = env_logger::Env::new()
         .filter("OPENWV_LOG")
